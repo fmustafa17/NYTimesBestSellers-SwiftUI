@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum Config: String {
+    case apiKey = "YOUR_API_KEY_HERE"
+}
