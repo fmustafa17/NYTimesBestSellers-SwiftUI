@@ -11,6 +11,7 @@
 		D8601CBB2C03F71E001D757F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8601CBA2C03F71E001D757F /* ContentView.swift */; };
 		D8601CBD2C03F720001D757F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8601CBC2C03F720001D757F /* Assets.xcassets */; };
 		D8601CC12C03F720001D757F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8601CC02C03F720001D757F /* Preview Assets.xcassets */; };
+		D8601CC82C03F802001D757F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8601CC72C03F802001D757F /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		D8601CBC2C03F720001D757F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8601CBE2C03F720001D757F /* NYTimesBestSellers_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NYTimesBestSellers_SwiftUI.entitlements; sourceTree = "<group>"; };
 		D8601CC02C03F720001D757F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D8601CC72C03F802001D757F /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				D8601CBC2C03F720001D757F /* Assets.xcassets */,
 				D8601CBE2C03F720001D757F /* NYTimesBestSellers_SwiftUI.entitlements */,
 				D8601CBF2C03F720001D757F /* Preview Content */,
+				D8601CC72C03F802001D757F /* Config.swift */,
 			);
 			path = "NYTimesBestSellers-SwiftUI";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			files = (
 				D8601CBB2C03F71E001D757F /* ContentView.swift in Sources */,
 				D8601CB92C03F71E001D757F /* NYTimesBestSellers_SwiftUIApp.swift in Sources */,
+				D8601CC82C03F802001D757F /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
