@@ -11,7 +11,9 @@ import SwiftUI
 /// Horizontal scrolling for all the best sellers for the given category
 struct BookScrollView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.horizontal) {
+            Text("Hello")
+        }
     }
 }
 
