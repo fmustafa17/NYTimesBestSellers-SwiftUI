@@ -15,7 +15,6 @@ class BookViewModel: ObservableObject {
     
     // MARK: - Combine
     @Published var booksResults: BookListResults?
-    @Published var books: [Book]?
     
     init(category: String) {
         self.category = category
@@ -27,7 +26,6 @@ class BookViewModel: ObservableObject {
             successHandler: { [weak self] (results) in
                 DispatchQueue.main.async {
                     self?.booksResults = results
-                    self?.books = results.results.books
                 }
             }, errorHandler: { (error) in
                 print(error)

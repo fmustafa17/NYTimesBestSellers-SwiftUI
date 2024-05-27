@@ -21,7 +21,7 @@ struct BookScrollView: View {
         Section {
             ScrollView(.horizontal) {
                 HStack {
-                    if let books = viewModel.books {
+                    if let books = viewModel.booksResults?.results.books {
                         ForEach(books, id: \.id) { book in
                             AsyncImage(url: URL(string: book.bookImage ?? ""))
                         }
@@ -29,9 +29,7 @@ struct BookScrollView: View {
                 }
             }
         } header: {
-            if let results = viewModel.booksResults {
-                Text(results.results.listName)
-            }
+            Text(viewModel.booksResults?.results.listName ?? "")
         }
         .task {
             viewModel.fetchBookData()
