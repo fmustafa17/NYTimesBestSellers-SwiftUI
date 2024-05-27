@@ -9,15 +9,13 @@ import Combine
 import SwiftUI
 
 /// Main view
-/// Lists all supported book categories 
+/// Lists all supported book categories
 struct BookCategoryListView: View {
     
     var body: some View {
         List {
             ForEach(BookCategory.allCases, id: \.rawValue) { bookCategory in
-                Section {
-                    BookScrollView(category: bookCategory.rawValue)
-                }
+                BookScrollView(category: bookCategory.rawValue)
             }
         }
     }

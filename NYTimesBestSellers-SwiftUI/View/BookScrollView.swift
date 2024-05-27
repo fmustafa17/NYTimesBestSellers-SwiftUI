@@ -18,13 +18,19 @@ struct BookScrollView: View {
     }
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                if let books = viewModel.books {
-                    ForEach(books, id: \.id) { book in
-                        AsyncImage(url: URL(string: book.bookImage ?? ""))
+        Section {
+            ScrollView(.horizontal) {
+                HStack {
+                    if let books = viewModel.books {
+                        ForEach(books, id: \.id) { book in
+                            AsyncImage(url: URL(string: book.bookImage ?? ""))
+                        }
                     }
                 }
+            }
+        } header: {
+            if let results = viewModel.booksResults {
+                Text(results.results.listName)
             }
         }
         .task {

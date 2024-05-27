@@ -14,7 +14,7 @@ class BookViewModel: ObservableObject {
     var category: String
     
     // MARK: - Combine
-    var booksResults: BookListResults?
+    @Published var booksResults: BookListResults?
     @Published var books: [Book]?
     
     init(category: String) {
