@@ -14,14 +14,16 @@ class BookViewModel: ObservableObject {
     @Published var booksResults: BookListResults?
     
     func fetchBookData() {
-        let category = randomBookCategory
+        let category = "manga"
         
-        self.fetchBookListResults(with: category,
-                                  successHandler: { [weak self] (books) in
-            self?.booksResults = books
-        }, errorHandler: { (error) in
-            print(error)
-        })
+        self.fetchBookListResults(
+            with: category,
+            successHandler: { [weak self] (books) in
+                self?.booksResults = books
+            }, errorHandler: { (error) in
+                print(error)
+            }
+        )
     }
     
     private func fetchBookListResults(with category: String,
@@ -77,10 +79,6 @@ class BookViewModel: ObservableObject {
         let bookListResults = try JSONDecoder().decode(BookListResults.self,
                                                        from: data)
         return bookListResults
-    }
-    
-    var randomBookCategory: String {
-        return BookCategory.allCases.randomElement()?.rawValue ?? "manga"
     }
     
     enum NYTimesError: Error {
