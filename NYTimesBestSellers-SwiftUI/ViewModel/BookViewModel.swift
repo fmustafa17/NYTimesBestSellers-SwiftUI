@@ -9,12 +9,9 @@ import Combine
 import Foundation
 
 class BookViewModel: ObservableObject {
-    
-    // MARK: - Dependencies
-    var category: String
-    
-    // MARK: - Combine
     @Published var booksResults: BookListResults?
+    
+    var category: String
     
     init(category: String) {
         self.category = category
@@ -67,27 +64,5 @@ class BookViewModel: ObservableObject {
             }
         }
         task.resume()
-    }
-    
-    // MARK: - Async Await
-    func fetchBooksWithAsyncAwait() async throws -> BookListResults {
-        let baseURL = "https://api.nytimes.com/svc/books/v3/lists/current/"
-        let apiKey = Config.apiKey.rawValue
-        let fullURLString = baseURL + category + ".json?api-key=" + apiKey
-        
-        guard let url = URL(string: fullURLString) else {
-            print("Couldn't retrieve a URL with \(fullURLString)")
-            throw NYTimesError.invalidURL
-        }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        
-        let bookListResults = try JSONDecoder().decode(BookListResults.self,
-                                                       from: data)
-        return bookListResults
-    }
-    
-    enum NYTimesError: Error {
-        case invalidURL
     }
 }
