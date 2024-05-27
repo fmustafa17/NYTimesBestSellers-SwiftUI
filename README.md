@@ -21,3 +21,4 @@ enum Config: String {
 
 # Watch the app in action
 
+![Simulator Screen Recording - iPhone 15 Pro Max - 2024-05-26 at 21 52 57](https://github.com/fmustafa17/NYTimesBestSellers-SwiftUI/assets/9143014/e715cca0-96a7-45af-99b9-36b8c40a7ff5)
