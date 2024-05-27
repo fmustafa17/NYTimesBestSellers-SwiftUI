@@ -18,18 +18,47 @@ struct BookScrollView: View {
     }
     
     var body: some View {
-        Section {
-            ScrollView(.horizontal) {
+        VStack {
+            if let listName = viewModel.booksResults?.results.listName {
+                Text(listName)
+                    .font(.headline)
+                    .padding(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     if let books = viewModel.booksResults?.results.books {
                         ForEach(books, id: \.id) { book in
-                            AsyncImage(url: URL(string: book.bookImage ?? ""))
+                            NavigationLink(destination: BookDetailView(book: book)) {
+                                VStack {
+                                    if let urlString = book.bookImage, let url = URL(string: urlString) {
+                                        AsyncImage(url: url) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 100, height: 150)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                    } else {
+                                        Color.gray
+                                            .frame(width: 100, height: 150)
+                                    }
+                                    Text(book.title)
+                                        .font(.subheadline)
+                                        .frame(width: 100)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding()
+                            }
                         }
+                    } else {
+                        Text("Loading...")
+                            .padding()
                     }
                 }
             }
-        } header: {
-            Text(viewModel.booksResults?.results.listName ?? "")
         }
         .task {
             viewModel.fetchBookData()
