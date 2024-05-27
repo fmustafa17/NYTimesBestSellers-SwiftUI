@@ -15,7 +15,7 @@ struct BookCategoryListView: View {
     var body: some View {
         List {
             ForEach(BookCategory.allCases, id: \.rawValue) { bookCategory in
-                BookScrollView()
+                BookScrollView(category: bookCategory.rawValue)
             }
         }
     }
