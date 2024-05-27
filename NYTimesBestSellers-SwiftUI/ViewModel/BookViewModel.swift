@@ -11,15 +11,17 @@ import Foundation
 class BookViewModel: ObservableObject {
     
     // MARK: - Combine
-    @Published var booksResults: BookListResults?
+    var booksResults: BookListResults?
+    @Published var books: [Book]?
     
     func fetchBookData() {
         let category = "manga"
         
         self.fetchBookListResults(
             with: category,
-            successHandler: { [weak self] (books) in
-                self?.booksResults = books
+            successHandler: { [weak self] (results) in
+                self?.booksResults = results
+                self?.books = results.results.books
             }, errorHandler: { (error) in
                 print(error)
             }
@@ -64,7 +66,7 @@ class BookViewModel: ObservableObject {
     
     // MARK: - Async Await
     func fetchBooksWithAsyncAwait() async throws -> BookListResults {
-        let category = randomBookCategory
+        let category = "manga"
         let baseURL = "https://api.nytimes.com/svc/books/v3/lists/current/"
         let apiKey = Config.apiKey.rawValue
         let fullURLString = baseURL + category + ".json?api-key=" + apiKey
