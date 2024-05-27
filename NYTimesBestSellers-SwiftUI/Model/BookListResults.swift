@@ -40,7 +40,8 @@ struct Results: Codable {
 }
 
 // MARK: - Book
-struct Book: Codable {
+struct Book: Identifiable, Codable, Hashable {
+    let id = UUID().uuidString
     let rank, rankLastWeek, weeksOnList, asterisk: Int
     let dagger: Int
     let primaryIsbn10, primaryIsbn13, publisher, description: String
@@ -56,7 +57,7 @@ struct Book: Codable {
     let bookURI: String
 
     enum CodingKeys: String, CodingKey {
-        case rank
+        case rank, id
         case rankLastWeek = "rank_last_week"
         case weeksOnList = "weeks_on_list"
         case asterisk, dagger
@@ -77,10 +78,14 @@ struct Book: Codable {
         case buyLinks = "buy_links"
         case bookURI = "book_uri"
     }
+    
+    static func == (lhs: Book, rhs: Book) -> Bool {
+        true
+    }
 }
 
 // MARK: - BuyLink
-struct BuyLink: Codable {
+struct BuyLink: Codable, Hashable {
     let name: Name
     let url: String
 }
@@ -95,6 +100,6 @@ enum Name: String, Codable {
 }
 
 // MARK: - Isbn
-struct Isbn: Codable {
+struct Isbn: Codable, Hashable {
     let isbn10, isbn13: String
 }

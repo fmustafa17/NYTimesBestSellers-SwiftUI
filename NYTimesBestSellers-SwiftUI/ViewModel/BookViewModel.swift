@@ -9,19 +9,25 @@ import Combine
 import Foundation
 
 class BookViewModel: ObservableObject {
-    
-    // MARK: - Combine
     @Published var booksResults: BookListResults?
     
+    var category: String
+    
+    init(category: String) {
+        self.category = category
+    }
+    
     func fetchBookData() {
-        let category = randomBookCategory
-        
-        self.fetchBookListResults(with: category,
-                                  successHandler: { [weak self] (books) in
-            self?.booksResults = books
-        }, errorHandler: { (error) in
-            print(error)
-        })
+        self.fetchBookListResults(
+            with: category,
+            successHandler: { [weak self] (results) in
+                DispatchQueue.main.async {
+                    self?.booksResults = results
+                }
+            }, errorHandler: { (error) in
+                print(error)
+            }
+        )
     }
     
     private func fetchBookListResults(with category: String,
@@ -58,32 +64,5 @@ class BookViewModel: ObservableObject {
             }
         }
         task.resume()
-    }
-    
-    // MARK: - Async Await
-    func fetchBooksWithAsyncAwait() async throws -> BookListResults {
-        let category = randomBookCategory
-        let baseURL = "https://api.nytimes.com/svc/books/v3/lists/current/"
-        let apiKey = Config.apiKey.rawValue
-        let fullURLString = baseURL + category + ".json?api-key=" + apiKey
-        
-        guard let url = URL(string: fullURLString) else {
-            print("Couldn't retrieve a URL with \(fullURLString)")
-            throw NYTimesError.invalidURL
-        }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        
-        let bookListResults = try JSONDecoder().decode(BookListResults.self,
-                                                       from: data)
-        return bookListResults
-    }
-    
-    var randomBookCategory: String {
-        return BookCategory.allCases.randomElement()?.rawValue ?? "manga"
-    }
-    
-    enum NYTimesError: Error {
-        case invalidURL
     }
 }

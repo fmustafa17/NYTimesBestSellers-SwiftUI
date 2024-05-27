@@ -9,6 +9,6 @@ import Foundation
 
 enum BookCategory: String, CaseIterable {
     case graphicBooksAndManga = "graphic-books-and-manga"
-    case manga = "manga"
-    case travel = "travel"
+    case health = "health"
+    case humor = "humor"
 }
