@@ -20,8 +20,10 @@ class BookViewModel: ObservableObject {
         self.fetchBookListResults(
             with: category,
             successHandler: { [weak self] (results) in
-                self?.booksResults = results
-                self?.books = results.results.books
+                DispatchQueue.main.async {
+                    self?.booksResults = results
+                    self?.books = results.results.books
+                }
             }, errorHandler: { (error) in
                 print(error)
             }
