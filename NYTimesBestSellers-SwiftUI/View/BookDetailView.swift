@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    var book: Book
 
-#Preview {
-    BookDetailView()
+    var body: some View {
+        ScrollView {
+            VStack {
+                if let bookImage = book.bookImage {
+                    AsyncImage(url: URL(string: bookImage)) { image in
+                        image
+                            .resizable()
+                    }  placeholder: {
+                        ProgressView()
+                    }
+                    .padding()
+                }
+                
+                Text(book.title)
+                    .font(.largeTitle)
+                
+                Text(book.author)
+                    .font(.headline)
+                
+                Spacer()
+
+                Text(book.description)
+                    .font(.subheadline)
+                    .padding()
+            }
+        }
+    }
 }

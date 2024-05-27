@@ -30,7 +30,7 @@ struct BookScrollView: View {
                 HStack {
                     if let books = viewModel.booksResults?.results.books {
                         ForEach(books, id: \.id) { book in
-                            NavigationLink(destination: BookDetailView()) {
+                            NavigationLink(destination: BookDetailView(book: book)) {
                                 VStack {
                                     if let urlString = book.bookImage, let url = URL(string: urlString) {
                                         AsyncImage(url: url) { image in
@@ -58,9 +58,6 @@ struct BookScrollView: View {
                             .padding()
                     }
                 }
-            }
-            .navigationDestination(for: Book.self) { book in
-                BookDetailView()
             }
         }
         .task {
