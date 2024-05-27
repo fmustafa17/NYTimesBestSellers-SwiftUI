@@ -11,7 +11,6 @@ import SwiftUI
 /// Main view
 /// Lists all supported book categories 
 struct BookCategoryListView: View {
-//    @ObservedObject var viewModel: BookViewModel
     
     var body: some View {
         List {
