@@ -59,6 +59,7 @@ struct BookScrollView: View {
                     }
                 }
             }
+            .scrollTargetBehavior(.paging)
         }
         .task {
             viewModel.fetchBookData()
